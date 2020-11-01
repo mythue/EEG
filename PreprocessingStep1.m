@@ -166,10 +166,6 @@ plot(t1, original, 'b', t1, out, 'r');
  for k=1:14
      subplot(4,4,k),plot(t1,original(k,:),'b', t1, out(k,:), 'r');
  end
- 
-% pwelch(new_data(1:14,:)', 128*30, [],[],128)
-% Save data output as mat. for next two steps
-% save('new_data.mat', 'new_data');
 
 
 
