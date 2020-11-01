@@ -28,5 +28,6 @@ original = reshape(input_data(1:14,:), 14, [], 1);
 plot(t1, original, 'b', t1, out, 'r');
  for k=1:14
      subplot(4,4,k),plot(t1,original(k,:), 'b', t1, out(k,:), 'r');
+     title(ChannelName(k));
  end
 

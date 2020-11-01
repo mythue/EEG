@@ -36,11 +36,11 @@ elseif numel(badChannelMarker)>0
     fprintf('%s is a bad channel.\n', badChannelMarker{end}); 
 end
 
-t1 = 0:1/Fs:(length(EEG.data(1,:))-1)/Fs;
 out=reshape(filteredData(1:14,:),14,[],1);
 original = reshape(input_data(1:14,:), 14, [], 1);
   
 plot(1:length(original(1,:)), original, 'b', 1:length(out(1,:)), out, 'r'); %blue for origin red for new data
  for k=1:14
      subplot(4,4,k),plot(1:length(original(1,:)), original(k,:), 'b', 1:length(out(1,:)), out(k,:), 'r');
+     title(ChannelName(k));
  end

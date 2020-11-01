@@ -15,6 +15,8 @@ clear all; clc;
 input_data = data';
 Fs = 128; %sampling rate
 num_channels = 14; %number of channels
+ChannelName = ["AF3", "F7", "F3", "FC5", "T7", "P7", "O1", "O2", ...
+                      "P8", "T8", "FC6", "F4", "F8", "AF4"];
 
 %% 1.1 Subdivide 1 sec windows (50% overlapping) 
 
@@ -123,6 +125,8 @@ for i = 1:num_channels
     reGenData(i,:) = highpass(reGenData(i,:), 0.5, Fs);
 end
 
+interData = reGenData;
+
 % Decompose signal into intrinsic mode functions
 
 for i = 1:num_channels
@@ -160,12 +164,15 @@ end
 % Plot
 t1 = 0:1/Fs:(length(reGenData(1,:))-1)/Fs;
 out=reshape(reGenData(1:14,1:length(input_data(1,:))),14,[],1);
+inter = reshape(interData(1:14,1:length(input_data(1,:))),14,[],1);
 original = reshape(input_data(1:14,:), 14, [], 1);
   
-plot(t1, original, 'b', t1, out, 'r');
+plot(t1, original, 'b', t1, out, 'r', t1, inter, 'y');
  for k=1:14
-     subplot(4,4,k),plot(t1,original(k,:),'b', t1, out(k,:), 'r');
+     subplot(4,4,k),plot(t1,original(k,:),'b', t1, out(k,:), 'r', t1, inter(k,:), 'y');
+     title(ChannelName(k));
  end
+ 
 
 
 

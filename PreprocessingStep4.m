@@ -19,6 +19,7 @@ original = reshape(input_data(1:14,:), 14, [], 1);
 plot(1:length(original(1,:)), original, 'b', 1:length(out(1,:)), out, 'r'); %blue for origin red for new data
  for k=1:14
      subplot(4,4,k),plot(1:length(original(1,:)), original(k,:), 'b', 1:length(out(1,:)), out(k,:), 'r');
+     title(ChannelName(k));
  end
 
 envelopeData = filteredData;
@@ -40,6 +41,7 @@ original = reshape(input_data(1:14,:), 14, [], 1);
 plot(1:length(original(1,:)), original, 'b', 1:length(out(1,:)), out, 'r'); %blue for origin red for new data
  for k=1:14
      subplot(4,4,k),plot(1:length(original(1,:)), original(k,:), 'b', 1:length(out(1,:)), out(k,:), 'r');
+     title(ChannelName(k));
  end
 
 % Remove outliers 4 std above the mean of envelope
@@ -59,6 +61,7 @@ original = reshape(input_data(1:14,:), 14, [], 1);
 plot(1:length(original(1,:)), original, 'b', 1:length(out(1,:)), out, 'r'); %blue for origin red for new data
  for k=1:14
      subplot(4,4,k),plot(1:length(original(1,:)), original(k,:), 'b', 1:length(out(1,:)), out(k,:), 'r');
+     title(ChannelName(k));
  end
  
 % 4.2 Remove 2-axis gyroscope data over 5 std from the mean change

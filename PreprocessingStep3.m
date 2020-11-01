@@ -14,4 +14,5 @@ original = reshape(input_data(1:14,:), 14, [], 1);
 plot(1:length(original(1,:)), original, 'b', 1:length(out(1,:)), out, 'r');
  for k=1:14
      subplot(4,4,k),plot(1:length(original(1,:)), original(k,:), 'b', 1:length(out(1,:)), out(k,:), 'r');
+     title(ChannelName(k));
  end
