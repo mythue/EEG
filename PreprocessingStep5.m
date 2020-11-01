@@ -12,7 +12,9 @@ end
 
 % show if any bad channel
 marker(strcmp('',marker)) = [];
-if strlength(marker)>0
+if numel(marker)>1
     fprintf('%s, ', marker{1:end-1});
     fprintf('and %s are bad channels.\n', marker{end}); 
+elseif numel(marker)>0
+    fprintf('%s is a bad channel.\n', marker{end}); 
 end
