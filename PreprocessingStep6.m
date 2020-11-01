@@ -29,9 +29,11 @@ end
 
 % show if any bad channel
 badChannelMarker(strcmp('',badChannelMarker)) = [];
-if strlength(badChannelMarker)>0 
+if numel(badChannelMarker)>1
     fprintf('%s, ', badChannelMarker{1:end-1});
     fprintf('and %s are bad channels.\n', badChannelMarker{end}); 
+elseif numel(badChannelMarker)>0 
+    fprintf('%s is a bad channel.\n', badChannelMarker{end}); 
 end
 
 t1 = 0:1/Fs:(length(EEG.data(1,:))-1)/Fs;
