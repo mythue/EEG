@@ -40,7 +40,7 @@ end
 %% 1.2 Delta Band Power for each window as the features
 
 delta_bandpower = zeros(num_channels, num_steps-1); %create delta band power matrix
-delta_range = [0.5 40]; %delta band frequency range
+delta_range = [0.5 4]; %delta band frequency range
 
 for i = 1:num_steps-1
     for j = 1:num_channels
