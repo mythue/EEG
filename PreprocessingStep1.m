@@ -161,7 +161,7 @@ for i = 1:num_channels
     reGenData(i,:) = IMF';
 end
 
-% Plot
+% Plot separate
 t1 = 0:1/Fs:(length(reGenData(1,:))-1)/Fs;
 out=reshape(reGenData(1:14,1:length(input_data(1,:))),14,[],1);
 inter = reshape(interData(1:14,1:length(input_data(1,:))),14,[],1);
@@ -173,7 +173,16 @@ plot(t1, original, 'b', t1, out, 'r', t1, inter, 'y');
      title(ChannelName(k));
  end
  
-
+ % Plot in one figure
+ 
+ for k = 1:14
+     plot(1:length(out(k,:)), out(k,:)+(105000-7000*k));
+     hold on
+     title('Step 1 Result');
+     ylim([0 105000]);
+ end
+ 
+legend(ChannelName);
 
 
 

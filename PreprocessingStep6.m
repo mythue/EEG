@@ -44,3 +44,15 @@ plot(1:length(original(1,:)), original, 'b', 1:length(out(1,:)), out, 'r'); %blu
      subplot(4,4,k),plot(1:length(original(1,:)), original(k,:), 'b', 1:length(out(1,:)), out(k,:), 'r');
      title(ChannelName(k));
  end
+% Plot in one figure
+for k = 1:14
+    plot(1:length(out(k,:)), out(k,:)+(7500-500*k));
+    hold on
+    title('Preprocessed Data');
+    ylim([0 7500]);
+end
+ 
+legend(ChannelName);
+
+% Save preprocessed data as csv
+% writematrix(filteredData,'Sub2_Scenario1_DecisionMaking_PreprocessedData.csv');

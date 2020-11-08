@@ -6,10 +6,10 @@ bandpass_range = [1 15]; % Hz
 n = 2; % Filter order: second order as default, try higher order for more accurate outputs
 
 [b, a] = butter(n, bandpass_range/(Fs/2)); % Get filter coefficients
-filteredData = zeros(length(reGenData(:,1)), length(reGenData(1,:)));
+filteredData = zeros(length(ordData(:,1)), length(ordData(1,:)));
 
 for i = 1:num_channels
-    filteredData(i,:) = filtfilt(b, a, reGenData(i,:)); % Apply Butterworth filter using zero-phase filtering
+    filteredData(i,:) = filtfilt(b, a, ordData(i,:)); % Apply Butterworth filter using zero-phase filtering
 end
 
 % plot
@@ -30,8 +30,8 @@ for i = 1:num_channels
 end
 
 % Match the data
-for i = num_channels+1:length(reGenData(:,1))
-    filteredData(i,:) = reGenData(i, :);
+for i = num_channels+1:length(ordData(:,1))
+    filteredData(i,:) = ordData(i, :);
 end
 
 % plot
