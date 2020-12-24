@@ -1,4 +1,4 @@
-%% Step 2: FIR filter (through EEGLAB)
+%% Step 2: FIR filter
 
 EEG = struct;
 EEG.data = reGenData(1:num_channels,:);
@@ -29,24 +29,26 @@ filtorder = 50;
 
 EEG = pop_eegfilt(EEG, locutoff, hicutoff, filtorder);
 
-% Plot comparison separate
-t1 = 0:1/Fs:(length(EEG.data(1,:))-1)/Fs;
-out = reshape(EEG.data(1:14,1:length(input_data(1,:))),14,[],1);
-original = reshape(input_data(1:14,:), 14, [], 1);
-  
-plot(t1, original, 'b', t1, out, 'r');
- for k=1:14
-     subplot(4,4,k),plot(t1,original(k,:), 'b', t1, out(k,:), 'r');
-     title(ChannelName(k));
- end
-
-% One Figure
- 
- for k = 1:14
-     plot(1:length(out(k,:)), out(k,:)+(105000-7000*k));
-     hold on
-     title('Step 2 Result');
-     ylim([0 105000]);
- end
- 
-legend(ChannelName);
+% % Plot comparison separate
+% t1 = 0:1/Fs:(length(EEG.data(1,:))-1)/Fs;
+% out = reshape(EEG.data(1:14,1:length(input_data(1,:))),14,[],1);
+% original = reshape(input_data(1:14,:), 14, [], 1);
+%   
+% plot(t1, original, 'b', t1, out, 'r');
+%  for k=1:14
+%      subplot(4,4,k),plot(t1,original(k,:), 'b', t1, out(k,:), 'r');
+%      title(ChannelName(k));
+%  end
+% 
+% % One Figure
+% 
+%  figure
+%  
+%  for k = 1:14
+%      plot(1:length(out(k,:)), out(k,:)+(105000-7000*k));
+%      hold on
+%      title('Step 2 Result');
+%      ylim([0 105000]);
+%  end
+%  
+% legend(ChannelName);

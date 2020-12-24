@@ -12,15 +12,15 @@ for i = 1:num_channels
     filteredData(i,:) = filtfilt(b, a, ordData(i,:)); % Apply Butterworth filter using zero-phase filtering
 end
 
-% plot
-out=reshape(filteredData(1:14,:),14,[],1);
-original = reshape(input_data(1:14,:), 14, [], 1);
-  
-plot(1:length(original(1,:)), original, 'b', 1:length(out(1,:)), out, 'r'); %blue for origin red for new data
- for k=1:14
-     subplot(4,4,k),plot(1:length(original(1,:)), original(k,:), 'b', 1:length(out(1,:)), out(k,:), 'r');
-     title(ChannelName(k));
- end
+% % plot
+% out=reshape(filteredData(1:14,:),14,[],1);
+% original = reshape(input_data(1:14,:), 14, [], 1);
+%   
+% plot(1:length(original(1,:)), original, 'b', 1:length(out(1,:)), out, 'r'); %blue for origin red for new data
+%  for k=1:14
+%      subplot(4,4,k),plot(1:length(original(1,:)), original(k,:), 'b', 1:length(out(1,:)), out(k,:), 'r');
+%      title(ChannelName(k));
+%  end
 
 envelopeData = filteredData;
  
@@ -34,15 +34,15 @@ for i = num_channels+1:length(ordData(:,1))
     filteredData(i,:) = ordData(i, :);
 end
 
-% plot
-out=reshape(filteredData(1:14,:),14,[],1);
-original = reshape(input_data(1:14,:), 14, [], 1);
-  
-plot(1:length(original(1,:)), original, 'b', 1:length(out(1,:)), out, 'r'); %blue for origin red for new data
- for k=1:14
-     subplot(4,4,k),plot(1:length(original(1,:)), original(k,:), 'b', 1:length(out(1,:)), out(k,:), 'r');
-     title(ChannelName(k));
- end
+% % plot
+% out=reshape(filteredData(1:14,:),14,[],1);
+% original = reshape(input_data(1:14,:), 14, [], 1);
+%   
+% plot(1:length(original(1,:)), original, 'b', 1:length(out(1,:)), out, 'r'); %blue for origin red for new data
+%  for k=1:14
+%      subplot(4,4,k),plot(1:length(original(1,:)), original(k,:), 'b', 1:length(out(1,:)), out(k,:), 'r');
+%      title(ChannelName(k));
+%  end
 
 % Remove outliers 4 std above the mean of envelope
 for i = 1:num_channels   
@@ -54,15 +54,15 @@ for i = 1:num_channels
     filteredData(:, idx) = [];
 end
 
-% plot
-out=reshape(filteredData(1:14,:),14,[],1);
-original = reshape(input_data(1:14,:), 14, [], 1);
-  
-plot(1:length(original(1,:)), original, 'b', 1:length(out(1,:)), out, 'r'); %blue for origin red for new data
- for k=1:14
-     subplot(4,4,k),plot(1:length(original(1,:)), original(k,:), 'b', 1:length(out(1,:)), out(k,:), 'r');
-     title(ChannelName(k));
- end
+% % plot
+% out=reshape(filteredData(1:14,:),14,[],1);
+% original = reshape(input_data(1:14,:), 14, [], 1);
+%   
+% plot(1:length(original(1,:)), original, 'b', 1:length(out(1,:)), out, 'r'); %blue for origin red for new data
+%  for k=1:14
+%      subplot(4,4,k),plot(1:length(original(1,:)), original(k,:), 'b', 1:length(out(1,:)), out(k,:), 'r');
+%      title(ChannelName(k));
+%  end
  
 % 4.2 Remove 2-axis gyroscope data over 5 std from the mean change
 

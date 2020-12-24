@@ -5,7 +5,9 @@
 %%             and all segments that have an average variance over 3 std 
 %%             above the globe variance are marked "bad"
 
+% function [BadChannelList, h1, h2] = PreprocessingStep6(p, BadChannelList, filteredData, input_data, num_channels, ChannelName)
 % Flag channels that consistently have a variance 3 std over all channels;
+function [BadChannelList] = PreprocessingStep6(p, BadChannelList, filteredData, input_data, num_channels, ChannelName)
 potentialBadChannel = zeros(num_channels, 1);
 
 % Calculate Variance across channels
@@ -32,27 +34,37 @@ badChannelMarker(strcmp('',badChannelMarker)) = [];
 if numel(badChannelMarker)>1
     fprintf('%s, ', badChannelMarker{1:end-1});
     fprintf('and %s are bad channels.\n', badChannelMarker{end}); 
+    BadChannelList(p,1) = strcat(badChannelMarker{1:end-1});
 elseif numel(badChannelMarker)>0 
     fprintf('%s is a bad channel.\n', badChannelMarker{end}); 
+    BadChannelList(p,1) = join(badChannelMarker{end});
 end
 
-out=reshape(filteredData(1:14,:),14,[],1);
-original = reshape(input_data(1:14,:), 14, [], 1);
-  
-plot(1:length(original(1,:)), original, 'b', 1:length(out(1,:)), out, 'r'); %blue for origin red for new data
- for k=1:14
-     subplot(4,4,k),plot(1:length(original(1,:)), original(k,:), 'b', 1:length(out(1,:)), out(k,:), 'r');
-     title(ChannelName(k));
- end
-% Plot in one figure
-for k = 1:14
-    plot(1:length(out(k,:)), out(k,:)+(7500-500*k));
-    hold on
-    title('Preprocessed Data');
-    ylim([0 7500]);
-end
- 
-legend(ChannelName);
+% h1 = figure;
+% 
+% out = reshape(filteredData(1:14,:),14,[],1);
+% original = reshape(input_data(1:14,:), 14, [], 1);
+% 
+% plot(1:length(original(1,:)), original, 'b', 1:length(out(1,:)), out, 'r'); %blue for origin red for new data
+%  for k=1:14
+%      subplot(4,4,k),plot(1:length(original(1,:)), original(k,:), 'b', 1:length(out(1,:)), out(k,:), 'r');
+%      title(ChannelName(k));
+%  end
+%  
+% 
+% % Plot in one figure
+% 
+% h2 = figure;
+% 
+% for k = 1:14
+%     plot(1:length(out(k,:)), out(k,:)+(7500-500*k));
+%     hold on
+%     title('Preprocessed Data');
+%     ylim([0 10000]);
+% end
+%  
+% legend(ChannelName);
+% end
 
 % Save preprocessed data as csv
 % writematrix(filteredData,'Sub2_Scenario1_DecisionMaking_PreprocessedData.csv');

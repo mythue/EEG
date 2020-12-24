@@ -9,14 +9,14 @@
 %%        in eye blink region by the data corresponding to filtered output 
 %%        of 4 Hz high pass filter 
 
-close all; 
-clear all; clc;
-[data] = open_files();
-input_data = data';
-Fs = 128; %sampling rate
-num_channels = 14; %number of channels
-ChannelName = ["AF3", "F7", "F3", "FC5", "T7", "P7", "O1", "O2", ...
-                      "P8", "T8", "FC6", "F4", "F8", "AF4"];
+% close all; 
+% clear all; clc;
+% [data] = open_files();
+% input_data = data';
+% Fs = 128; %sampling rate
+% num_channels = 14; %number of channels
+% ChannelName = ["AF3", "F7", "F3", "FC5", "T7", "P7", "O1", "O2", ...
+%                       "P8", "T8", "FC6", "F4", "F8", "AF4"];
 
 %% 1.1 Subdivide 1 sec windows (50% overlapping) 
 
@@ -161,30 +161,28 @@ for i = 1:num_channels
     reGenData(i,:) = IMF';
 end
 
-% Plot separate
-t1 = 0:1/Fs:(length(reGenData(1,:))-1)/Fs;
-out=reshape(reGenData(1:14,1:length(input_data(1,:))),14,[],1);
-inter = reshape(interData(1:14,1:length(input_data(1,:))),14,[],1);
-original = reshape(input_data(1:14,:), 14, [], 1);
-  
-plot(t1, original, 'b', t1, out, 'r', t1, inter, 'y');
- for k=1:14
-     subplot(4,4,k),plot(t1,original(k,:),'b', t1, out(k,:), 'r', t1, inter(k,:), 'y');
-     title(ChannelName(k));
- end
- 
- % Plot in one figure
- 
- for k = 1:14
-     plot(1:length(out(k,:)), out(k,:)+(105000-7000*k));
-     hold on
-     title('Step 1 Result');
-     ylim([0 105000]);
- end
- 
-legend(ChannelName);
-
-
-
-
-
+% % Plot separate
+% 
+% t1 = 0:1/Fs:(length(reGenData(1,:))-1)/Fs;
+% out = reshape(reGenData(1:14,1:length(input_data(1,:))),14,[],1);
+% inter = reshape(interData(1:14,1:length(input_data(1,:))),14,[],1);
+% original = reshape(input_data(1:14,:), 14, [], 1);
+%   
+% plot(t1, original, 'b', t1, out, 'r', t1, inter, 'y');
+% for k=1:14
+%  subplot(4,4,k),plot(t1,original(k,:),'b', t1, out(k,:), 'r', t1, inter(k,:), 'y');
+%  title(ChannelName(k));
+% end
+%  
+% % Plot in one figure
+% 
+% figure
+% 
+% for k = 1:14
+%  plot(1:length(out(k,:)), out(k,:)+(105000-7000*k));
+%  hold on
+%  title('Step 1 Result');
+%  ylim([0 105000]);
+% end
+%  
+% legend(ChannelName);
